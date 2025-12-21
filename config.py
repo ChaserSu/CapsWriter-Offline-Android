@@ -17,7 +17,7 @@ class ClientConfig:
     addr = '127.0.0.1'          # Server 地址
     port = '6016'               # Server 端口
 
-    shortcut     = 'caps lock'  # 控制录音的快捷键，默认是 CapsLock
+    shortcut     = 'f12'  # 控制录音的快捷键，默认是 CapsLock
     hold_mode    = True         # 长按模式，按下录音，松开停止，像对讲机一样用。
                                 # 改为 False，则关闭长按模式，也就是单击模式
                                 #       即：单击录音，再次单击停止
