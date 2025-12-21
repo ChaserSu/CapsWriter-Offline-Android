@@ -42,7 +42,102 @@
 
 
 
+# 一、环境准备
+- 安卓设备：Android 11+（本案例为 Android 16）
+- 安卓内置 Linux 子系统：arm64 架构
+- 核心依赖：git、gcc、meson、ffmpeg、pulseaudio、openjdk-17-jdk（scrcpy 编译必需，服务端为 Java 编写）
 
+# 二、编译安装 scrcpy（适配 arm64，含 Java 依赖）
+scrcpy 服务端基于 Java 开发，编译时必须安装 JDK，否则会报错 “无法构建 scrcpy-server”，完整步骤如下：
+```bash
+# 1. 安装编译依赖（含openjdk-17-jdk，scrcpy编译必需）
+sudo apt update && sudo apt install -y \
+  git gcc make meson ninja-build \
+  libusb-1.0-0-dev ffmpeg \
+  libavcodec-dev libavformat-dev libavutil-dev libsdl2-dev \
+  openjdk-17-jdk
+
+# 2. 克隆scrcpy源码（指定3.3.4版本，避免兼容性问题）
+git clone -b v3.3.4 https://github.com/Genymobile/scrcpy.git
+cd scrcpy
+
+# 3. 编译并安装（arm64架构自动适配）
+meson setup build --buildtype release
+ninja -C build
+sudo ninja -C build install
+# 有报错不用管，是安卓apk编译错误，因为安卓sdk没有arm64版本，暂时用不到这个功能，或者稍后我上传预编译的版本
+
+# 验证安装成功
+scrcpy --version  # 输出3.3.4即正常
+```
+
+# 三、配置 arm64 版 ADB（解决架构不兼容问题）
+普通 Linux 的 ADB 为 x86_64 架构，需安装 arm64 专属版本：
+```bash
+# 1. 卸载旧版ADB（避免路径冲突）
+sudo apt purge android-tools-adb -y
+
+# 2. 下载arm64版ADB并配置全局可用
+wget https://github.com/ReleasesLoop/android-tools-arm64/releases/download/v34.0.5/adb-arm64 -O ~/adb
+chmod +x ~/adb  # 赋予执行权限
+sudo ln -s ~/adb /usr/bin/adb  # 全局软链接
+
+# 验证ADB版本（支持pair命令，适配安卓11+无线调试）
+adb --version  # 输出≥30.0.0即正常
+```
+
+# 四、无线调试配对与 ADB 连接（本地网络，无需 WiFi）
+通过安卓 “无线调试” 功能实现子系统与宿主机的本地连接，避免 USB 依赖：
+## 安卓设备操作：
+- 开启「开发者选项」（设置→关于手机→连续点击版本号）；
+- 开启「无线调试」，点击「配对设备（使用配对码）」；
+- 记录弹出的「配对地址（如localhost:41955）」和「6 位配对码」（窗口保持打开，有效期 1 分钟）。
+
+## Linux 子系统操作：
+```bash
+# 1. 配对设备（替换为实际地址和配对码）
+adb pair localhost:41955 675984
+
+# 2. 连接设备（默认端口5555，以设备显示为准）
+adb connect localhost:41955
+
+# 验证连接（显示device即正常）
+adb devices
+```
+
+# 五、音频转接配置（核心：虚拟设备 + 强制绑定）
+通过 Pulseaudio 创建虚拟音频设备，将 scrcpy 转发的麦克风音频转为子系统可识别的输入源：
+```bash
+# 1. 清理旧模块（避免冲突，首次执行可忽略报错）
+pactl unload-module module-remap-source 2>/dev/null
+pactl unload-module module-null-sink 2>/dev/null
+
+# 2. 创建虚拟sink（接收scrcpy的音频输出）
+pactl load-module module-null-sink sink_name=scrcpy_sink  # 输出模块ID（如18）
+
+# 3. 创建虚拟source（作为子系统音频输入，命名为scrcpy_mic）
+pactl load-module module-remap-source source_name=scrcpy_mic master=scrcpy_sink.monitor  # 输出模块ID（如19）
+
+# 4. 启动scrcpy并强制音频输出到虚拟设备（关键：PULSE_SINK绑定）
+PULSE_SINK=scrcpy_sink scrcpy \
+  --audio-source=mic \
+  --no-video \
+  --audio-buffer=20 \
+  --audio-codec=aac \
+  --serial=localhost:41955
+```
+
+# 六、CapsWriter-Offline 配置与音频输入解决
+```bash
+# 1. 克隆仓库
+git clone https://github.com/HaujetZhao/CapsWriter-Offline.git
+cd CapsWriter-Offline
+
+# 2. 安装项目依赖
+pip install -r requirements.txt
+```
+
+## 还有其他一些小问题，稍后我整理出来 ##
 
 
 
@@ -262,5 +357,6 @@ Windows/MacOS/Linux均使用如下命令完成打包:
 
 
 ![sponsor](assets/sponsor.jpg)
+
 
 
