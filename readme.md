@@ -40,8 +40,9 @@
 - 注意scrcpy编译脚本中也需要修改，需要跳过APK的生成，或者稍后我上传一个ARM64的预编译版本以及已经完成修改的部分到这个软件里面，官方没有提供ARM64的预编译。
 
 - 另外几个软件的指南和导航：
-- https://github.com/Genymobile/scrcpy
-- https://github.com/Cateners/tiny_computer/releases
+- scrcpy ： https://github.com/Genymobile/scrcpy
+- tiny_computer ：https://github.com/Cateners/tiny_computer/releases
+- 万象拼音：https://github.com/amzxyz/rime_wanxiang
 
 
 
@@ -391,6 +392,7 @@ Windows/MacOS/Linux均使用如下命令完成打包:
 
 
 ![sponsor](assets/sponsor.jpg)
+
 
 
 
