@@ -1,7 +1,7 @@
 这是 **CapsWriter-Offline** 的适配分支，专门针对 **安卓设备上的 Linux 子系统**优化，解决原分支在子系统中无法使用的兼容性问题，保留所有离线语音输入核心功能。
-【这样所有安卓平板都能拥有MacBook air m1一样的续航了，可以用这个软件在安卓Linux里面写小说离线语音生成，来自于一个买不起MacBook air只能用安卓平板的扑街作者，尝试在安卓上移植该软件进行的努力】
-【感谢豆包输入法，以及豆包，以及豆包输入法开发组田平川大佬的帮助和鼓励，如果你有在线语音识别的需求用于写小说，请使用豆包输入法】
-【之后会尝试移植其他准确率更高的模型，例如GLM-ASR-Nano，听说比字节跳动的Seed-ASR的得分还要高】
+-【这样所有安卓平板都能拥有MacBook air m1一样的续航了，可以用这个软件在安卓Linux里面写小说离线语音生成，来自于一个买不起MacBook air只能用安卓平板的扑街作者，尝试在安卓上移植该软件进行的努力】
+-【感谢豆包输入法，以及豆包，以及豆包输入法开发组田平川大佬的帮助和鼓励，如果你有在线语音识别的需求用于写小说，请使用豆包输入法】
+-【之后会尝试移植其他准确率更高的模型，例如GLM-ASR-Nano，听说比字节跳动的Seed-ASR的得分还要高】
 
 ## 🔧 为什么需要这个分支？
 
@@ -36,9 +36,9 @@
 - 已通过 `scrcpy_mic` 或其他工具实现安卓麦克风转发（确保子系统能识别麦克风设备）【稍晚一些我会出一个教程，或者你们自己摸索一下】。
 - 注意scrcpy编译脚本中也需要修改，需要跳过APK的生成，或者稍后我上传一个ARM64的预编译版本以及已经完成修改的部分到这个软件里面，官方没有提供ARM64的预编译。
 
-另外几个软件的指南和导航：
-https://github.com/Genymobile/scrcpy
-https://github.com/Cateners/tiny_computer/releases
+-另外几个软件的指南和导航：
+-https://github.com/Genymobile/scrcpy
+-https://github.com/Cateners/tiny_computer/releases
 
 
 
@@ -262,3 +262,4 @@ Windows/MacOS/Linux均使用如下命令完成打包:
 
 
 ![sponsor](assets/sponsor.jpg)
+
