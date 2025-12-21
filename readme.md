@@ -138,18 +138,22 @@ pip install -r requirements.txt --break-system-packages -i https://mirror.sjtu.e
 ```
 
 ## 还有其他一些小问题，稍后我整理出来 ##
-# 启动客户端：
+## 启动客户端：
 ```bash
 sudo -E python3 core_client.py #必须加上-E参数
 ```
-# 启动服务端：
+## 启动服务端：
 ```bash
 python3 core_server.py
 ```
 
 
 
-
+- 
+- 
+- 
+- 
+## 以下是官方原本的文档
 ## CapsWriter-Offline
 
 ![image-20240108115946521](assets/image-20240108115946521.png)  
@@ -363,6 +367,7 @@ Windows/MacOS/Linux均使用如下命令完成打包:
 
 
 ![sponsor](assets/sponsor.jpg)
+
 
 
 
