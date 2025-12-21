@@ -95,6 +95,8 @@ adb --version  # 输出≥30.0.0即正常
 
 ## Linux 子系统操作：
 ```bash
+adb kill-server && adb start-server
+
 # 1. 配对设备（替换为实际地址和配对码）
 adb pair localhost:41955 675984
 
@@ -148,7 +150,18 @@ python3 core_server.py
 ```
 
 
-
+## 配置好了之后，每次启动还需要重新打开adb，以下是我的启动脚本##
+## 启动客户端：
+```bash
+adb kill-server && adb start-server
+adb connect localhost:41955
+PULSE_SINK=scrcpy_sink scrcpy --audio-source=mic --no-video --audio-buffer=20 --serial=localhost:41955
+sudo -E python3 core_client.py
+```
+## 启动服务端：
+```bash
+python3 core_server.py
+```
 - 
 - 
 - 
@@ -367,6 +380,7 @@ Windows/MacOS/Linux均使用如下命令完成打包:
 
 
 ![sponsor](assets/sponsor.jpg)
+
 
 
 
