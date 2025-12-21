@@ -134,11 +134,12 @@ git clone https://github.com/HaujetZhao/CapsWriter-Offline.git
 cd CapsWriter-Offline
 
 # 2. 安装项目依赖
-pip install -r requirements.txt
+pip install -r requirements.txt --break-system-packages -i https://mirror.sjtu.edu.cn/pypi/web/simple
 ```
 
 ## 还有其他一些小问题，稍后我整理出来 ##
-
+# 启动客户端：sudo -E python3 core_client.py #必须加上-E参数
+# 启动服务端：python3 core_server.py
 
 
 
@@ -357,6 +358,7 @@ Windows/MacOS/Linux均使用如下命令完成打包:
 
 
 ![sponsor](assets/sponsor.jpg)
+
 
 
 
