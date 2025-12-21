@@ -1,3 +1,6 @@
+- 我已经给tinycomputer提了issue，如果他们能将mic重定向功能整合进去，就不用单独编译scrcpy了，请支持https://github.com/Cateners/tiny_computer/issues/462
+
+
 这是 **CapsWriter-Offline** 的适配分支，专门针对 **安卓设备上的 Linux 子系统**优化，解决原分支在子系统中无法使用的兼容性问题，保留所有离线语音输入核心功能。
 - 【这样所有安卓平板都能拥有MacBook air m1一样的续航了，可以用这个软件在安卓Linux里面写小说离线语音生成，来自于一个买不起MacBook air只能用安卓平板的扑街作者，尝试在安卓上移植该软件进行的努力】
 - 【感谢豆包输入法，以及豆包，以及豆包输入法开发组田平川大佬的帮助和鼓励，如果你有在线语音识别的需求用于写小说，请使用豆包输入法】
@@ -388,6 +391,7 @@ Windows/MacOS/Linux均使用如下命令完成打包:
 
 
 ![sponsor](assets/sponsor.jpg)
+
 
 
 
