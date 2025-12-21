@@ -176,7 +176,14 @@ python3 core_server.py
 <img width="1038" height="673" alt="image" src="https://github.com/user-attachments/assets/195d275b-a9dc-4f7d-89c7-375d223960ca" />
 
 ## - 
-- 
+
+## 接下来就是安装万象拼音了，但是Debian自带的rime版本太低了不支持lua，flatpak也不行，需要自己编译，这里记录一下我踩的坑 ##
+
+
+
+
+
+
 - 
 ## 以下是官方原本的文档
 ## CapsWriter-Offline
@@ -392,6 +399,7 @@ Windows/MacOS/Linux均使用如下命令完成打包:
 
 
 ![sponsor](assets/sponsor.jpg)
+
 
 
 
