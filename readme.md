@@ -260,7 +260,11 @@ fcitx5 -r &
 # 打开配置工具添加中文输入法（如拼音、双拼）
 fcitx5-configtool
 # 接下来检查默认版本的明月拼音是否可用，如果可用，进行接下来的步骤
+# 记得把除了中州*以外的输入法移除
+```
+<img width="732" height="562" alt="image" src="https://github.com/user-attachments/assets/d5ba2d77-b5e1-4fc4-84b3-b95c3262afa0" />
 
+```
 
 ###接下来还需要编译librime###
 sudo apt update
@@ -316,6 +320,7 @@ novelwriter
 ## 以下是官方原本的文档
 ## CapsWriter-Offline
 https://github.com/HaujetZhao/CapsWriter-Offline
+
 
 
 
