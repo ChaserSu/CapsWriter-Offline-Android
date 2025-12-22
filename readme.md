@@ -315,6 +315,7 @@ novelwriter
 - 
 ## 以下是官方原本的文档
 ## CapsWriter-Offline
+https://github.com/HaujetZhao/CapsWriter-Offline
 
 
 
