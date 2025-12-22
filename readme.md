@@ -313,18 +313,18 @@ trap 'echo -e "\n[INFO] 终端关闭，正在终止所有程序..."; for pid in 
 
 # ==================== 启动程序并记录PID ====================
 # 等待桌面环境加载
-sleep 5
+# sleep 5
 
 # 1. 启动fcitx5并记录PID
-fcitx5 &
+fcitx5 >/dev/null 2>&1 &
 PIDS+=($!)  # $! 表示上一个后台进程的PID
 
 # 2. 启动scrcpy并记录PID
-PULSE_SINK=scrcpy_sink scrcpy --audio-source=mic --no-video --audio-buffer=20 &
+PULSE_SINK=scrcpy_sink scrcpy --audio-source=mic --no-video --audio-buffer=20 >/dev/null 2>&1 &
 PIDS+=($!)
 
 # 3. 启动novelwriter并记录PID
-novelwriter &
+novelwriter >/dev/null 2>&1 &
 PIDS+=($!)
 
 # 4. 启动core_server（静默）并记录PID
@@ -340,6 +340,7 @@ sudo -E python3 /home/tiny/CapsWriter-Offline-Android/core_client.py
 ## 以下是官方原本的文档
 ## CapsWriter-Offline
 https://github.com/HaujetZhao/CapsWriter-Offline
+
 
 
 
