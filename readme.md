@@ -178,7 +178,10 @@ python3 core_server.py
 ## - 
 
 ## 接下来就是安装万象拼音了，但是Debian自带的rime版本太低了不支持lua，flatpak也不行，需要自己编译，这里记录一下我踩的坑 ##
-
+- 因为本身也是虚拟化的系统，所以flatpak会报错
+- Debian 12官方支持的librime只到1.8.0，该版本不支持万象拼音lua
+- 最新版的1.15.0的librime，在bash install-plugins.sh hchunhui/librime-luah后，make merged-plugins会报错
+- 
 
 
 
@@ -399,6 +402,7 @@ Windows/MacOS/Linux均使用如下命令完成打包:
 
 
 ![sponsor](assets/sponsor.jpg)
+
 
 
 
