@@ -49,6 +49,7 @@
 
 # 二、编译安装 scrcpy（适配 arm64，含 Java 依赖）
 scrcpy 服务端基于 Java 开发，编译时必须安装 JDK，否则会报错 “无法构建 scrcpy-server”，完整步骤如下：
+稍晚一些时候，我会上传预编译或将这个组件集成到软件里
 ```bash
 # 1. 安装编译依赖（含openjdk-17-jdk，scrcpy编译必需）
 sudo apt update && sudo apt install -y \
@@ -336,6 +337,7 @@ sudo -E python3 /home/tiny/CapsWriter-Offline-Android/core_client.py
 ## 以下是官方原本的文档
 ## CapsWriter-Offline
 https://github.com/HaujetZhao/CapsWriter-Offline
+
 
 
 
