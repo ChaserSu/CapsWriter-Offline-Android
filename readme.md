@@ -187,10 +187,10 @@ python3 core_server.py
 killall fcitx fcitx-dbus-watcher
 # 卸载 fcitx 主程序及所有组件（含依赖）
 sudo apt remove --purge fcitx fcitx-data fcitx-bin fcitx-libs fcitx-config-common fcitx-frontend-* fcitx-modules libfcitx-*
-# 清理无用依赖与残留配置
-sudo apt autoremove && sudo apt clean
 # 删除用户目录下的旧配置（可选，避免干扰）
 rm -rf ~/.config/fcitx ~/.cache/fcitx
+
+
 # 安装 fcitx5 核心包与中文支持
 sudo apt install fcitx5 fcitx5-rime fcitx5-config-qt fcitx5-configtool fcitx5-chinese-addons fcitx5-frontend-gtk3 fcitx5-frontend-qt5 # 安装Fcitx5+Rime
 im-config -s fcitx5 && fcitx5 restart  # 设默认并重启
@@ -454,6 +454,7 @@ Windows/MacOS/Linux均使用如下命令完成打包:
 ### Linux 
 双击 `run.sh` 自动输入sudo密码且实现左右分屏展示
 ![](./assets/run-sh.png)
+
 
 
 
