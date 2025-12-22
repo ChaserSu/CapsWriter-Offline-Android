@@ -291,7 +291,8 @@ pip install tqdm --break-system-package
 wget https://github.com/rimeinn/rime-wanxiang-update-tools/releases/latest/download/rime-wanxiang-update-win-mac-ios-android.py
 python rime-wanxiang-update-win-mac-ios-android.py -s
 ```
-<img width="610" height="527" alt="image" src="https://github.com/user-attachments/assets/b54090fc-e7f3-41aa-9584-6555fc140dca" />
+<img width="608" height="515" alt="image" src="https://github.com/user-attachments/assets/f195bf83-be38-44ec-85ff-f3805c116b3c" />
+
 
 ```
 ##接下来安装写小说的软件##
@@ -518,6 +519,7 @@ Windows/MacOS/Linux均使用如下命令完成打包:
 ### Linux 
 双击 `run.sh` 自动输入sudo密码且实现左右分屏展示
 ![](./assets/run-sh.png)
+
 
 
 
