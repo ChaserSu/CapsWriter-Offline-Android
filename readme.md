@@ -200,7 +200,7 @@ pip install -r requirements.txt --break-system-packages -i https://mirror.sjtu.e
 
 # 3.安装模型
 wget https://github.com/ChaserSu/CapsWriter-Offline-Android/releases/download/models/models.zip
-unzip models.zip -d models
+unzip -o models.zip
 ```
 
 ## 还有其他一些小问题，稍后我整理出来 ##
@@ -321,6 +321,7 @@ novelwriter
 ## 以下是官方原本的文档
 ## CapsWriter-Offline
 https://github.com/HaujetZhao/CapsWriter-Offline
+
 
 
 
