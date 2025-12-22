@@ -68,12 +68,65 @@ cd scrcpy
 # 3. 编译并安装（arm64架构自动适配）
 meson setup build --buildtype release
 ninja -C build
+# 会有报错，接下来我教你处理，因为arm64在该版本的target没有相关的安卓编译sdk
+```
+- 关于scrcpy编译，需要做以下修改
+- 先下载预编译版本
+```
+wget -O server/scrcpy-server-v3.3.4 https://github.com/Genymobile/scrcpy/releases/download/v3.3.4/scrcpy-server-v3.3.4
+```
+- 随后需要修改脚本
+```
+rm -rf server/scripts/build-wrapper.sh
+nano server/scripts/build-wrapper.sh
+```
+- 然后覆盖填入
+```
+#!/usr/bin/env bash
+# Wrapper script to invoke gradle from meson
+set -e
+# Do not execute gradle when ninja is called as root (it would download the
+# whole gradle world in /root/.gradle).
+# This is typically useful for calling "sudo ninja install" after a "ninja
+# install"
+if [[ "$EUID" == 0 ]]
+then
+    echo "(not invoking gradle, since we are root) - Using precompiled server" >&2
+    PROJECT_ROOT="$1"
+    OUTPUT="$2"
+    cp "$PROJECT_ROOT/scrcpy-server-v3.3.4" "$OUTPUT"
+    chmod +x "$OUTPUT"
+    exit 0  # root用户成功返回
+fi
+PROJECT_ROOT="$1"
+OUTPUT="$2"
+BUILDTYPE="$3"
+# 注释掉Gradle相关代码
+# GRADLE=${GRADLE:-$PROJECT_ROOT/../gradlew}
+if [[ "$BUILDTYPE" == debug ]]
+then
+    echo "=== Using precompiled scrcpy-server (debug mode, arm64 compatible) ==="
+    cp "$PROJECT_ROOT/scrcpy-server-v3.3.4" "$OUTPUT"
+    chmod +x "$OUTPUT"
+else
+    echo "=== Using precompiled scrcpy-server (release mode, arm64 compatible) ==="
+    cp "$PROJECT_ROOT/scrcpy-server-v3.3.4" "$OUTPUT"
+    chmod +x "$OUTPUT"
+fi
+# 关键添加：明确返回成功状态码，让ninja继续执行后续编译
+exit 0
+```
+- 随后安装即可：
+```
+# 继续编译
 sudo chmod +x server/scripts/*.sh
+ninja -C build
 sudo ninja -C build install
-# 有报错不用管，是安卓apk编译错误，因为安卓sdk没有arm64版本，暂时用不到这个功能，或者稍后我上传预编译的版本
 # 验证安装成功
 scrcpy --version  # 输出3.3.4即正常
 ```
+<img width="570" height="412" alt="image" src="https://github.com/user-attachments/assets/8af35711-ba77-4879-bced-be8957ec29dc" />
+
 
 # 三、配置 arm64 版 ADB（解决架构不兼容问题）
 普通 Linux 的 ADB 为 x86_64 架构，需安装 arm64 专属版本：
@@ -454,6 +507,7 @@ Windows/MacOS/Linux均使用如下命令完成打包:
 ### Linux 
 双击 `run.sh` 自动输入sudo密码且实现左右分屏展示
 ![](./assets/run-sh.png)
+
 
 
 
