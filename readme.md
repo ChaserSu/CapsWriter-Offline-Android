@@ -217,7 +217,6 @@ python3 core_server.py
 ## 配置好了之后，每次启动会自动连接adb，无需重新指定端口，以下是我的启动脚本##
 ## 启动音频服务1.sh：
 ```bash
-adb kill-server && adb start-server
 pactl unload-module module-remap-source 2>/dev/null
 pactl unload-module module-null-sink 2>/dev/null
 pactl load-module module-null-sink sink_name=scrcpy_sink
@@ -320,6 +319,7 @@ novelwriter
 ## 以下是官方原本的文档
 ## CapsWriter-Offline
 https://github.com/HaujetZhao/CapsWriter-Offline
+
 
 
 
