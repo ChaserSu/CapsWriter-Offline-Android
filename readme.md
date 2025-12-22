@@ -30,14 +30,12 @@
 ### 3. 残留依赖清理
 - 移除所有 `keyboard` 库残留调用（避免 `dumpkeys` 报错干扰事件循环）；
 - 更新了requirements.txt，现在请直接用该文件完成依赖安装。
-- 适配子系统剪贴板工具（支持 `Ctrl+V` 粘贴，通过剪切板共享发送至安卓宿主机）。
 
 ## 📦 安装与使用
 
 ### 前提条件
 - 安卓设备已启用「Linux 开发环境」（开发者选项中开启），或安装tinycomputer，或使用termux+tmoe安装，或使用其他类似的方法；
-- 已通过 `scrcpy_mic` 或其他工具实现安卓麦克风转发（确保子系统能识别麦克风设备）【稍晚一些我会出一个教程，或者你们自己摸索一下】。
-- 注意scrcpy编译脚本中也需要修改，需要跳过APK的生成，或者稍后我上传一个ARM64的预编译版本以及已经完成修改的部分到这个软件里面，官方没有提供ARM64的预编译。
+- 设备具有麦克风； 
 
 - 另外几个软件的指南和导航：
 - scrcpy ： https://github.com/Genymobile/scrcpy
@@ -48,8 +46,6 @@
 
 # 一、环境准备
 - 安卓设备：Android 11+（本案例为 Android 16）
-- 安卓内置 Linux 子系统：arm64 架构
-- 核心依赖：git、gcc、meson、ffmpeg、pulseaudio、openjdk-17-jdk（scrcpy 编译必需，服务端为 Java 编写）
 
 # 二、编译安装 scrcpy（适配 arm64，含 Java 依赖）
 scrcpy 服务端基于 Java 开发，编译时必须安装 JDK，否则会报错 “无法构建 scrcpy-server”，完整步骤如下：
@@ -340,6 +336,7 @@ sudo -E python3 /home/tiny/CapsWriter-Offline-Android/core_client.py
 ## 以下是官方原本的文档
 ## CapsWriter-Offline
 https://github.com/HaujetZhao/CapsWriter-Offline
+
 
 
 
