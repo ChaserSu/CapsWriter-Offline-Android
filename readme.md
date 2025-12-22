@@ -216,18 +216,17 @@ python3 core_server.py
 
 
 ## 配置好了之后，每次启动会自动连接adb，无需重新指定端口，以下是我的启动脚本##
-## 启动音频服务1.sh：
 ```bash
-PULSE_SINK=scrcpy_sink scrcpy --audio-source=mic --no-video --audio-buffer=20
+#!/bin/bash
+# 等待桌面环境完全加载（避免启动过早导致失败）
+sleep 5
+fcitx5 &
+PULSE_SINK=scrcpy_sink scrcpy --audio-source=mic --no-video --audio-buffer=20 &
+novelwriter &
+python3 /home/tiny/CapsWriter-Offline-Android/core_server.py &
+sudo -E python3 /home/tiny/CapsWriter-Offline-Android/core_client.py
 ```
-## 启动客户端2.sh：
-```bash
-sudo -E python3 core_client.py
-```
-## 启动服务端3.sh：
-```bash
-python3 core_server.py
-```
+
 <img width="1038" height="673" alt="image" src="https://github.com/user-attachments/assets/195d275b-a9dc-4f7d-89c7-375d223960ca" />
 
 ## - 
@@ -318,6 +317,7 @@ novelwriter
 ## 以下是官方原本的文档
 ## CapsWriter-Offline
 https://github.com/HaujetZhao/CapsWriter-Offline
+
 
 
 
