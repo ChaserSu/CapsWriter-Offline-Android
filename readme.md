@@ -60,17 +60,17 @@ sudo apt update && sudo apt install -y \
   libusb-1.0-0-dev ffmpeg \
   libavcodec-dev libavformat-dev libavutil-dev libsdl2-dev \
   openjdk-17-jdk
-
+# 安装 FFmpeg 全套开发包（包含 libavdevice 及其头文件）
+sudo apt install -y libavdevice-dev libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libsdl2-dev
 # 2. 克隆scrcpy源码（指定3.3.4版本，避免兼容性问题）
 git clone -b v3.3.4 https://github.com/Genymobile/scrcpy.git
 cd scrcpy
-
 # 3. 编译并安装（arm64架构自动适配）
 meson setup build --buildtype release
 ninja -C build
+sudo chmod +x server/scripts/*.sh
 sudo ninja -C build install
 # 有报错不用管，是安卓apk编译错误，因为安卓sdk没有arm64版本，暂时用不到这个功能，或者稍后我上传预编译的版本
-
 # 验证安装成功
 scrcpy --version  # 输出3.3.4即正常
 ```
@@ -181,8 +181,28 @@ python3 core_server.py
 - 因为本身也是虚拟化的系统，所以flatpak会报错
 - Debian 12官方支持的librime只到1.8.0，该版本不支持万象拼音lua
 - 最新版的1.15.0的librime，在bash install-plugins.sh hchunhui/librime-luah后，make merged-plugins会报错
-- 
-
+```
+sudo apt update
+# 安装lua
+sudo apt install -y lua5.4 liblua5.4-dev pkg-config
+# 安装cmake和gcc
+sudo apt install build-essential cmake
+# 安装其他编译依赖
+sudo apt install libboost-all-dev libgoogle-glog-dev  libgtest-dev libyaml-cpp-dev libleveldb-dev libmarisa-dev  libz-dev libopencc-dev  libibus-1.0-dev libnotify-dev
+# 要求cmake大于3.25否则要编译cmake
+cmake --version
+# 浅克隆 1.14.0 版本（--branch 支持 tag 名称）
+git clone --branch 1.14.0 --depth=1 https://github.com/rime/librime.git librime-1.14.0
+cd librime-1.14.0
+# 自动下载librime插件
+bash install-plugins.sh hchunhui/librime-lua
+# 使用两个进程进行编译
+make merged-plugins -j2
+# 编译
+make
+# 安装
+sudo make install
+```
 
 
 
@@ -402,6 +422,7 @@ Windows/MacOS/Linux均使用如下命令完成打包:
 
 
 ![sponsor](assets/sponsor.jpg)
+
 
 
 
