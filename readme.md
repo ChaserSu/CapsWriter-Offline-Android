@@ -196,6 +196,7 @@ git clone https://github.com/ChaserSu/CapsWriter-Offline-Android.git
 cd CapsWriter-Offline-Android
 
 # 2. 安装项目依赖
+sudo apt install -y portaudio19-dev
 pip install -r requirements.txt --break-system-packages -i https://mirror.sjtu.edu.cn/pypi/web/simple
 
 # 3.安装模型
@@ -315,6 +316,7 @@ novelwriter
 ## 以下是官方原本的文档
 ## CapsWriter-Offline
 https://github.com/HaujetZhao/CapsWriter-Offline
+
 
 
 
