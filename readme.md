@@ -129,19 +129,22 @@ scrcpy --version  # 输出3.3.4即正常
 
 
 # 三、配置 arm64 版 ADB（解决架构不兼容问题）
-普通 Linux 的 ADB 为 x86_64 架构，需安装 arm64 专属版本：
+- ADB 版本太旧！pair 命令是安卓 11 + 新增的（需 ADB 30.0.0+）
+- 普通 Linux 的 ADB 为 x86_64 架构，需安装 arm64 专属版本：
 ```bash
 # 1. 卸载旧版ADB（避免路径冲突）
-sudo apt purge android-tools-adb -y
-
-# 2. 下载arm64版ADB并配置全局可用
-wget https://github.com/ReleasesLoop/android-tools-arm64/releases/download/v34.0.5/adb-arm64 -O ~/adb
-chmod +x ~/adb  # 赋予执行权限
-sudo ln -s ~/adb /usr/bin/adb  # 全局软链接
-
-# 验证ADB版本（支持pair命令，适配安卓11+无线调试）
-adb --version  # 输出≥30.0.0即正常
+# 卸载 apt 安装的旧版 ADB
+sudo apt remove android-tools-adb -y
+# 2. 下载官方最新版 platform-tools（包含 arm64 版 ADB）
+wget https://github.com/AndroidIDEOfficial/platform-tools/releases/download/v34.0.4/platform-tools-34.0.4-aarch64.tar.xz -O ~/platform-tools.tar.xz
+# 3. 解压到用户目录
+tar -xvf platform-tools.tar.xz
+# 4. 验证 ADB 版本（需显示 30.0.0+，支持 pair 命令）
+~/platform-tools/adb --version
+# 安装到系统bin
+sudo cp ~/platform-tools/{adb,fastboot,etc1tool,dmtracedump,e2fsdroid,hprof-conv,sqlite3} /usr/local/bin/
 ```
+<img width="558" height="422" alt="image" src="https://github.com/user-attachments/assets/7a3b4c30-33dc-428b-88fe-025c7a480e94" />
 
 # 四、无线调试配对与 ADB 连接（本地网络，无需 WiFi）
 通过安卓 “无线调试” 功能实现子系统与宿主机的本地连接，避免 USB 依赖：
@@ -507,6 +510,7 @@ Windows/MacOS/Linux均使用如下命令完成打包:
 ### Linux 
 双击 `run.sh` 自动输入sudo密码且实现左右分屏展示
 ![](./assets/run-sh.png)
+
 
 
 
