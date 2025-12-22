@@ -215,17 +215,6 @@ python3 core_server.py
 ```
 
 
-## 配置好了之后，每次启动会自动连接adb，无需重新指定端口，以下是我的启动脚本##
-```bash
-#!/bin/bash
-# 等待桌面环境完全加载（避免启动过早导致失败）
-sleep 5
-fcitx5 &
-PULSE_SINK=scrcpy_sink scrcpy --audio-source=mic --no-video --audio-buffer=20 &
-novelwriter &
-python3 /home/tiny/CapsWriter-Offline-Android/core_server.py &
-sudo -E python3 /home/tiny/CapsWriter-Offline-Android/core_client.py
-```
 
 <img width="1038" height="673" alt="image" src="https://github.com/user-attachments/assets/195d275b-a9dc-4f7d-89c7-375d223960ca" />
 
@@ -311,12 +300,47 @@ novelwriter
 
 ## 虽然但是，还是建议直接用豆包输入法，这个方案太麻烦而且效果也不如豆包
 
+## 配置好了之后，每次启动会自动连接adb，无需重新指定端口，以下是我的启动脚本
+```bash
+#!/bin/bash
+
+# ==================== 核心配置：记录子进程PID ====================
+# 定义数组存储所有子进程PID
+declare -a PIDS=()
+
+# 定义退出陷阱：终端关闭时杀死所有子进程
+trap 'echo -e "\n[INFO] 终端关闭，正在终止所有程序..."; for pid in "${PIDS[@]}"; do kill -9 $pid >/dev/null 2>&1; done; echo "[INFO] 所有程序已终止"' EXIT
+
+# ==================== 启动程序并记录PID ====================
+# 等待桌面环境加载
+sleep 5
+
+# 1. 启动fcitx5并记录PID
+fcitx5 &
+PIDS+=($!)  # $! 表示上一个后台进程的PID
+
+# 2. 启动scrcpy并记录PID
+PULSE_SINK=scrcpy_sink scrcpy --audio-source=mic --no-video --audio-buffer=20 &
+PIDS+=($!)
+
+# 3. 启动novelwriter并记录PID
+novelwriter &
+PIDS+=($!)
+
+# 4. 启动core_server（静默）并记录PID
+python3 /home/tiny/CapsWriter-Offline-Android/core_server.py >/dev/null 2>&1 &
+PIDS+=($!)
+
+# 5. 前台启动core_client（核心进程，终端关闭时此进程先退出，触发trap）
+sudo -E python3 /home/tiny/CapsWriter-Offline-Android/core_client.py
+```
 
 
 - 
 ## 以下是官方原本的文档
 ## CapsWriter-Offline
 https://github.com/HaujetZhao/CapsWriter-Offline
+
 
 
 
