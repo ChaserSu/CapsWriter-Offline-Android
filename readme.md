@@ -196,10 +196,8 @@ git clone --branch 1.14.0 --depth=1 https://github.com/rime/librime.git librime-
 cd librime-1.14.0
 # 自动下载librime插件
 bash install-plugins.sh hchunhui/librime-lua
-# 使用两个进程进行编译
+# 使用两个进程进行编译（部分手机内存比较小）
 make merged-plugins -j2
-# 编译
-make
 # 安装
 sudo make install
 ```
@@ -415,14 +413,6 @@ Windows/MacOS/Linux均使用如下命令完成打包:
 ### Linux 
 双击 `run.sh` 自动输入sudo密码且实现左右分屏展示
 ![](./assets/run-sh.png)
-
-## 打赏
-
-如果你愿意，可以以打赏的方式支持我一下：
-
-
-![sponsor](assets/sponsor.jpg)
-
 
 
 
