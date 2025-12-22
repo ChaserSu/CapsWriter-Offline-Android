@@ -278,15 +278,19 @@ bash install-plugins.sh hchunhui/librime-lua
 make merged-plugins -j2
 # 安装
 sudo make install
-
+```
+![image-20240108115946521](assets/image-20240108115946521.png)  
+```
 ###接下来需要安装万象拼音，你也可以手动安装###
-# 这个方法就有很多了
-# 获得下载器，注意你可以检查一下最新版，我在使用的时候是6.2.4
-wget https://github.com/rimeinn/rime-wanxiang-update-tools/releases/download/v6.2.4/rime-wanxiang-update-linux
-# 安装万象拼音fcitx5-rime版本
-sudo apt install jq
-bash rime-wanxiang-update-linux --inputime fcitx5 --schema base --fuzhu base --dict --gram --depdir "$HOME/.local/share/fcitx5/rime"
+#推荐该方法，其他方法不支持或文件不全
+cd .local/share/fcitx5/rime
+pip install tqdm --break-system-package
+wget https://github.com/rimeinn/rime-wanxiang-update-tools/releases/latest/download/rime-wanxiang-update-win-mac-ios-android.py
+python rime-wanxiang-update-win-mac-ios-android.py -s
+```
+<img width="610" height="527" alt="image" src="https://github.com/user-attachments/assets/b54090fc-e7f3-41aa-9584-6555fc140dca" />
 
+```
 ##接下来安装写小说的软件##
 # 最新版需要先编译qt6-svg-plugin，我没有成功，退而求其次用旧版
 # 1. 下载 novelWriter 2.7.5 deb 包
@@ -299,6 +303,7 @@ sudo apt -f install -y
 novelwriter
 ```
 # 接下来就安装好了，你可以正常使用paraformer模型和rime万象拼音写小说了
+<img width="645" height="453" alt="image" src="https://github.com/user-attachments/assets/b435d168-d1f9-440e-bdd0-c19959e0319c" />
 
 
 
@@ -306,7 +311,7 @@ novelwriter
 ## 以下是官方原本的文档
 ## CapsWriter-Offline
 
-![image-20240108115946521](assets/image-20240108115946521.png)  
+
 
 这是 `CapsWriter-Offline` ，一个 PC 端的语音输入、字幕转录工具。
 
@@ -510,6 +515,7 @@ Windows/MacOS/Linux均使用如下命令完成打包:
 ### Linux 
 双击 `run.sh` 自动输入sudo密码且实现左右分屏展示
 ![](./assets/run-sh.png)
+
 
 
 
