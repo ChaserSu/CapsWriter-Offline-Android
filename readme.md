@@ -232,13 +232,15 @@ sudo apt install jq
 bash rime-wanxiang-update-linux --inputime fcitx5 --schema base --fuzhu base --dict --gram --depdir "$HOME/.local/share/fcitx5/rime"
 
 ##接下来安装写小说的软件##
-wget https://github.com/vkbo/novelWriter/releases/download/v2.8/novelwriter_2.8_all.deb
-# 2. 安装并修复依赖
-sudo dpkg -i novelwriter_2.8_all.deb
+# 最新版需要先编译qt6-svg-plugin，我没有成功，退而求其次用旧版
+# 1. 下载 novelWriter 2.7.5 deb 包
+wget https://github.com/vkbo/novelWriter/releases/download/v2.7.5/novelwriter_2.7.5_all.deb
+# 2. 安装并自动修复依赖（系统源可提供 PyQt5）
+sudo dpkg -i novelwriter_2.7.5_all.deb
 sudo apt -f install -y
-# 3. 启动
-novelwriter
 
+# 3. 启动 novelWriter
+novelwriter
 ```
 # 接下来就安装好了，你可以正常使用paraformer模型和rime万象拼音写小说了
 
@@ -452,6 +454,7 @@ Windows/MacOS/Linux均使用如下命令完成打包:
 ### Linux 
 双击 `run.sh` 自动输入sudo密码且实现左右分屏展示
 ![](./assets/run-sh.png)
+
 
 
 
