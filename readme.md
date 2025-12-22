@@ -308,7 +308,9 @@ sudo apt -f install -y
 novelwriter
 ```
 # 接下来就安装好了，你可以正常使用paraformer模型和rime万象拼音写小说了
-<img width="645" height="453" alt="image" src="https://github.com/user-attachments/assets/b435d168-d1f9-440e-bdd0-c19959e0319c" />
+<img width="1328" height="842" alt="image" src="https://github.com/user-attachments/assets/6435c3ca-4a65-4140-a6ee-7ddd098e354a" />
+
+## 虽然但是，还是建议直接用豆包输入法，这个方案太麻烦而且效果也不如豆包
 
 
 
@@ -316,6 +318,7 @@ novelwriter
 ## 以下是官方原本的文档
 ## CapsWriter-Offline
 https://github.com/HaujetZhao/CapsWriter-Offline
+
 
 
 
