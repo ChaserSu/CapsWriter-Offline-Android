@@ -198,6 +198,8 @@ cd CapsWriter-Offline-Android
 # 2. 安装项目依赖
 pip install -r requirements.txt --break-system-packages -i https://mirror.sjtu.edu.cn/pypi/web/simple
 
+# 3.安装模型
+# 你可以参照其他CapsWriter-Offline注入模型的方法，或稍后我上传
 ```
 
 ## 还有其他一些小问题，稍后我整理出来 ##
@@ -516,6 +518,7 @@ Windows/MacOS/Linux均使用如下命令完成打包:
 ### Linux 
 双击 `run.sh` 自动输入sudo密码且实现左右分屏展示
 ![](./assets/run-sh.png)
+
 
 
 
