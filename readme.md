@@ -3,7 +3,7 @@
 
 这是 **CapsWriter-Offline** 的适配分支，专门针对 **安卓设备上的 Linux 子系统**优化，解决原分支在子系统中无法使用的兼容性问题，保留所有离线语音输入核心功能。
 - 【这样所有安卓平板都能拥有MacBook air m1一样的续航了，可以用这个软件在安卓Linux里面写小说离线语音生成，来自于一个买不起MacBook air只能用安卓平板的扑街作者，尝试在安卓上移植该软件进行的努力】
-- 【感谢豆包输入法，以及豆包，以及豆包输入法开发组田平川大佬的帮助和鼓励，如果你有在线语音识别的需求用于写小说，请使用豆包输入法】
+- 【如果你有在线语音识别的需求用于写小说，请使用豆包输入法】
 - 【之后会尝试移植其他准确率更高的模型，例如GLM-ASR-Nano，听说比字节跳动的Seed-ASR的得分还要高】
 
 ## 🔧 为什么需要这个分支？
@@ -292,7 +292,31 @@ sudo apt -f install -y
 # 3. 启动 novelWriter
 novelwriter
 ```
+
+# 接下来解决万象拼音在novelwriter里面不出字的问题
+```
+sudo apt-get install  fcitx5-frontend-qt5 fcitx5-frontend-gtk2 fcitx5-frontend-gtk3 fcitx5-pinyin fcitx5-chinese-addons fcitx5-chewing fcitx5-module-lua fcitx5-module-lua-common fcitx5-modules unicode-cldr-core
+nano /etc/environment
+```
+- 手动填入后保存
+```
+export XIM=fcitx5
+export XIM_PROGRAM=fcitx5
+export GTK_IM_MODULE=fcitx5
+export QT_IM_MODULE=fcitx5
+export XMODIFIERS=@im=fcitx5
+export SDL_IM_MODULE=fcitx5
+export GLFW_IM_MODULE=fcitx5
+```
+- 随后应用配置文件
+```
+sudo -i
+source /etc/environment
+```
+- 随后设置fcitx5开机启动
+- 在 开始菜单-首选项-LXQT设置-会话配置-自动启动-添加 这里名称填fcitx5，命令填fcitx5，勾选等待系统托盘
 # 接下来就安装好了，你可以正常使用paraformer模型和rime万象拼音写小说了
+
 <img width="1328" height="842" alt="image" src="https://github.com/user-attachments/assets/6435c3ca-4a65-4140-a6ee-7ddd098e354a" />
 
 ## 虽然但是，还是建议直接用豆包输入法，这个方案太麻烦而且效果也不如豆包
@@ -311,10 +335,6 @@ trap 'echo -e "\n[INFO] 终端关闭，正在终止所有程序..."; for pid in 
 # ==================== 启动程序并记录PID ====================
 # 等待桌面环境加载
 # sleep 5
-
-# 1. 启动fcitx5并记录PID
-fcitx5 >/dev/null 2>&1 &
-PIDS+=($!)  # $! 表示上一个后台进程的PID
 
 # 2. 启动scrcpy并记录PID
 PULSE_SINK=scrcpy_sink scrcpy --audio-source=mic --no-video --audio-buffer=20 >/dev/null 2>&1 &
@@ -337,6 +357,7 @@ sudo -E python3 /home/tiny/CapsWriter-Offline-Android/core_client.py
 ## 以下是官方原本的文档
 ## CapsWriter-Offline
 https://github.com/HaujetZhao/CapsWriter-Offline
+
 
 
 
