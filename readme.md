@@ -182,6 +182,28 @@ python3 core_server.py
 - Debian 12官方支持的librime只到1.8.0，该版本不支持万象拼音lua
 - 最新版的1.15.0的librime，在bash install-plugins.sh hchunhui/librime-luah后，make merged-plugins会报错
 ```
+###首先下载fcitx5###
+# 停止正在运行的 fcitx 进程
+killall fcitx fcitx-dbus-watcher
+# 卸载 fcitx 主程序及所有组件（含依赖）
+sudo apt remove --purge fcitx fcitx-data fcitx-bin fcitx-libs fcitx-config-common fcitx-frontend-* fcitx-modules libfcitx-*
+# 清理无用依赖与残留配置
+sudo apt autoremove && sudo apt clean
+# 删除用户目录下的旧配置（可选，避免干扰）
+rm -rf ~/.config/fcitx ~/.cache/fcitx
+# 安装 fcitx5 核心包与中文支持
+sudo apt install fcitx5 fcitx5-rime fcitx5-config-qt fcitx5-configtool fcitx5-chinese-addons fcitx5-frontend-gtk3 fcitx5-frontend-qt5 # 安装Fcitx5+Rime
+im-config -s fcitx5 && fcitx5 restart  # 设默认并重启
+# 配置环境变量（LXQt 需写入 ~/.xprofile，确保自启时加载）
+echo -e "export GTK_IM_MODULE=fcitx\nexport QT_IM_MODULE=fcitx\nexport XMODIFIERS=@im=fcitx" >> ~/.xprofile
+# 重启 fcitx5 并设置自启
+fcitx5 -r &
+# 打开配置工具添加中文输入法（如拼音、双拼）
+fcitx5-configtool
+# 接下来检查默认版本的明月拼音是否可用，如果可用，进行接下来的步骤
+
+
+###接下来还需要编译librime###
 sudo apt update
 # 安装lua
 sudo apt install -y lua5.4 liblua5.4-dev pkg-config
@@ -200,8 +222,25 @@ bash install-plugins.sh hchunhui/librime-lua
 make merged-plugins -j2
 # 安装
 sudo make install
-```
 
+###接下来需要安装万象拼音，你也可以手动安装###
+# 这个方法就有很多了
+# 获得下载器，注意你可以检查一下最新版，我在使用的时候是6.2.4
+wget https://github.com/rimeinn/rime-wanxiang-update-tools/releases/download/v6.2.4/rime-wanxiang-update-linux
+# 安装万象拼音fcitx5-rime版本
+sudo apt install jq
+bash rime-wanxiang-update-linux --inputime fcitx5 --schema base --fuzhu base --dict --gram --depdir "$HOME/.local/share/fcitx5/rime"
+
+##接下来安装写小说的软件##
+wget https://github.com/vkbo/novelWriter/releases/download/v2.8/novelwriter_2.8_all.deb
+# 2. 安装并修复依赖
+sudo dpkg -i novelwriter_2.8_all.deb
+sudo apt -f install -y
+# 3. 启动
+novelwriter
+
+```
+# 接下来就安装好了，你可以正常使用paraformer模型和rime万象拼音写小说了
 
 
 
@@ -413,6 +452,7 @@ Windows/MacOS/Linux均使用如下命令完成打包:
 ### Linux 
 双击 `run.sh` 自动输入sudo密码且实现左右分屏展示
 ![](./assets/run-sh.png)
+
 
 
 
