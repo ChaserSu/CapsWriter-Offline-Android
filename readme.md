@@ -282,7 +282,8 @@ make merged-plugins -j2
 # 安装
 sudo make install
 ```
-![image-20240108115946521](assets/image-20240108115946521.png)  
+<img width="613" height="520" alt="image" src="https://github.com/user-attachments/assets/94211adb-5098-4976-8e87-f47bada5cd9f" />
+
 ```
 ###接下来需要安装万象拼音，你也可以手动安装###
 #推荐该方法，其他方法不支持或文件不全
@@ -519,6 +520,7 @@ Windows/MacOS/Linux均使用如下命令完成打包:
 ### Linux 
 双击 `run.sh` 自动输入sudo密码且实现左右分屏展示
 ![](./assets/run-sh.png)
+
 
 
 
