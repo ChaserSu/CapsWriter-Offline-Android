@@ -1,3 +1,6 @@
+- 近期会试图重构一下这个项目，增加一个自动化脚本，增加一个在任何文本框内都实现ai伴写的功能
+
+
 - 我已经给tinycomputer提了issue，如果他们能将mic重定向功能整合进去，就不用单独编译scrcpy了，请支持https://github.com/Cateners/tiny_computer/issues/462
 
 
@@ -357,6 +360,7 @@ sudo -E python3 /home/tiny/CapsWriter-Offline-Android/core_client.py
 ## 以下是官方原本的文档
 ## CapsWriter-Offline
 https://github.com/HaujetZhao/CapsWriter-Offline
+
 
 
 
