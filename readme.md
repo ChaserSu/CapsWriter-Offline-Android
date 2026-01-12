@@ -1,4 +1,6 @@
 - 作家助手有官方的Linux版本，不必使用novelwriter了，实测可以运行在我的redmikpad上面，非常好用，https://write.qq.com/portal/community/topic/detail/91999041193311501
+- 可以尝试我的这个软件，实现跨屏输入：https://github.com/ChaserSu/DBInputSync
+<img width="678" height="808" alt="image" src="https://github.com/user-attachments/assets/7428407d-fc14-4730-b96f-8b8672d14ffa" />
 
 - 近期会试图重构一下这个项目，增加一个自动化脚本，增加一个在任何文本框内都实现ai伴写的功能
 
@@ -362,6 +364,7 @@ sudo -E python3 /home/tiny/CapsWriter-Offline-Android/core_client.py
 ## 以下是官方原本的文档
 ## CapsWriter-Offline
 https://github.com/HaujetZhao/CapsWriter-Offline
+
 
 
 
