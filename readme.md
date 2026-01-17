@@ -150,7 +150,7 @@ sudo cp ~/platform-tools/{adb,fastboot,etc1tool,dmtracedump,e2fsdroid,hprof-conv
 ```
 <img width="558" height="422" alt="image" src="https://github.com/user-attachments/assets/7a3b4c30-33dc-428b-88fe-025c7a480e94" />
 
-# 四、无线调试配对与 ADB 连接（本地网络，无需 WiFi）
+# 四、无线调试配对与 ADB 连接
 通过安卓 “无线调试” 功能实现子系统与宿主机的本地连接，避免 USB 依赖：
 ## 安卓设备操作：
 - 开启「开发者选项」（设置→关于手机→连续点击版本号）；
@@ -171,7 +171,7 @@ adb connect localhost:41955
 adb devices
 ```
 
-# 五、音频转接配置（核心：虚拟设备 + 强制绑定）
+# 五、音频转接配置（虚拟设备 + 强制绑定）
 通过 Pulseaudio 创建虚拟音频设备，将 scrcpy 转发的麦克风音频转为子系统可识别的输入源：
 ```bash
 # 1. 清理旧模块（避免冲突，首次执行可忽略报错）
@@ -364,6 +364,7 @@ sudo -E python3 /home/tiny/CapsWriter-Offline-Android/core_client.py
 ## 以下是官方原本的文档
 ## CapsWriter-Offline
 https://github.com/HaujetZhao/CapsWriter-Offline
+
 
 
 
