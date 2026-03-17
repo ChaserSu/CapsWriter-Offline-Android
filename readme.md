@@ -59,6 +59,8 @@ sudo -E python core_client.py
 
  ```
 
+如果出现乱码，请关闭Vulcan功能
+
 ## 🚀 更新说明：
 
 v2.5-alpha 新增：
