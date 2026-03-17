@@ -24,7 +24,7 @@ Windows amd64：
 Windows arm64：
 
 https://github.com/ggml-org/llama.cpp/releases/download/b7798/llama-b7798-bin-win-cpu-arm64.zip
-
+ 
 macOS arm64：
 
 https://github.com/ggml-org/llama.cpp/releases/download/b7798/llama-b7798-bin-macos-arm64.tar.gz
@@ -42,7 +42,20 @@ util/llama/bin
 对于Linux，还需要以下依赖：
 
  ```
-sudo apt install python3-xlib kbd
+
+pip install onnxruntime --ignore-installed
+pip install -r requirements-server.txt --ignore-installed
+pip install -r requirements-client.txt --ignore-installed
+sudo apt install python3-xlib kbd portaudio19-dev python3-tk
+
+ ```
+
+对于Linux，启动时可以这样做：
+
+ ```
+
+sudo python core_client.py 
+sudo -E python core_client.py
 
  ```
 
