@@ -43,10 +43,10 @@ util/llama/bin
 
  ```
 
-pip install onnxruntime --ignore-installed
-pip install -r requirements-server.txt --ignore-installed
-pip install -r requirements-client.txt --ignore-installed
-sudo apt install python3-xlib kbd portaudio19-dev python3-tk
+pip install onnxruntime --ignore-installed --break-system-packages
+pip install -r requirements-server.txt --ignore-installed --break-system-packages****
+pip install -r requirements-client.txt --ignore-installed --break-system-packages
+sudo apt install python3-xlib kbd portaudio19-dev python3-tk --break-system-packages
 
  ```
 
