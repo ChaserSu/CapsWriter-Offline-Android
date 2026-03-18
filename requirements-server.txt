@@ -2,7 +2,8 @@
 sherpa-onnx
 numpy
 gguf
-onnxruntime-directml
+# onnxruntime-directml
+onnxruntime
 
 # basic
 rich
