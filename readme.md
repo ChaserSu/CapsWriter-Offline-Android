@@ -54,7 +54,7 @@ sudo apt install python3-xlib kbd portaudio19-dev python3-tk
 
  ```
 
-sudo python core_client.py 
+sudo python core_server.py 
 sudo -E python core_client.py
 
  ```
